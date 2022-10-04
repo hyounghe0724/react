@@ -4,9 +4,10 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState([]);
   const [having, setHaving] = useState("");
-  const [Btc, setBtc] = useState("");
+  const [Btc, setBtc] = useState(0);
 
   function onChange(event) {
+    console.log("onChange");
     setHaving(event.target.value);
   }
   function handleChange(event) {
@@ -17,9 +18,11 @@ function App() {
       .then((response) => response.json())
       .then((json) => {
         setCoins(json);
+        setBtc(json[0]["quotes"]["USD"]["price"]);
         setLoading(false);
       });
   }, []);
+  console.log("Btc: ", Btc);
   return (
     <div>
       <h1>The coins! {loading ? "" : `(${coins.length})`}</h1>
@@ -40,7 +43,7 @@ function App() {
         type="number"
         placeholder="having your dollars"
       ></input>
-      <h2>{having / Btc} BTC</h2>
+      <h2>{having / Btc ? having / Btc : null} BTC</h2>
     </div>
   );
 }
