@@ -1,10 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />, document.getElementById("root"));
-
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 // 1. props나 state가 업데이트
 // 2. 컴포넌트 리렌더링
 // 3. 이전 이펙트 클린업
